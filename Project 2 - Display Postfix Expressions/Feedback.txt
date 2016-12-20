@@ -1,0 +1,36 @@
+Oh good.
+
+Mine was relatively short, but it took a while to figure out. I basically created a new stack called registerStack. I pushed every operator and operand to it while traversing the tree. Then, whenever it got time to insert the right parenthesis (when reaching the right nodes that had other right nodes) I would pop three strings (leftNum, rightNum, operator). Then I'd call my generateThreeAddress method with those three inputs.  It would create a temp string with Rx (x being the register count which I ++), push that back to the registerStack, and then put the rest in a finalAddress running string.
+
+I know that's a little confusing, but here's the order of that stack for 10 5 - 6 +
+
+Push +
+Push -
+Push 10
+Push 5
+Pop 5
+Pop 10
+Pop -
+Push R0
+Push 6
+Pop 6
+Pop R0
+Pop +
+Push R1
+
+The Three Address is:
+Sub R0 10 5
+Add R1 R0 6
+
+Maybe that helps? Or maybe it confuses the crap out of you. I know it took me a couple of days to wrap my head around it.
+
+
+
+Design: (3) Your class structure to represent the expression tree is not right. There is no reason for the base class to have the left and right child nodes in there, the belong only when you have an operation.
+The method to generate the 3 word instructions is very clumsy, and should be implemented using a method defined on the node class, the same way you do the transformation to infix.
+In any case, the duplication for each case of operation cries for refactoring.
+
+
+
+Everything else is good, with great explanations in the documentation, and clear code.
+

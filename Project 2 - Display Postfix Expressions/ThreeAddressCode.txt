@@ -1,0 +1,5 @@
+Add R0 2 5
+Mul R1 3 2
+Add R2 R0 R1
+Sub R3 R2 1
+Mul R4 7 R3
